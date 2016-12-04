@@ -1,0 +1,75 @@
+package com.example.yangxiaoguang.cordovademo;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.KeyEvent;
+
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+
+/**
+ * CordovaWebActivity 现实web 的窗口
+ */
+public class CordovaWebActivity extends AppCompatActivity implements CordovaInterface {
+
+    CordovaWebView cordovaWebView;
+
+    //系统线程池，创建后由Cordova调用。TODO：需要移植
+    private final ExecutorService threadPool = Executors.newCachedThreadPool();
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_coedova_web);
+        cordovaWebView = (CordovaWebView)findViewById(R.id.cordovawebview);
+        cordovaWebView.loadUrl("http://m.taobao.com");
+    }
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == 4)
+        {
+            finish();
+            return false;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
+    //TODO 以下代码是Cordova 的接口实现，在移植过程中，需要加入到被调用的Activity中
+    @Override
+    public void startActivityForResult(CordovaPlugin cordovaPlugin, Intent intent, int i) {
+
+    }
+
+    @Override
+    public void setActivityResultCallback(CordovaPlugin cordovaPlugin) {
+
+    }
+
+
+    //Todo 这个返回当前CordovaWebview 所在的Activity
+    @Override
+    public Activity getActivity() {
+        return this;
+    }
+
+    @Override
+    public Object onMessage(String s, Object o) {
+        return null;
+    }
+
+    //Todo 这个必须要由返回
+    @Override
+    public ExecutorService getThreadPool() {
+        return threadPool;
+    }
+}
