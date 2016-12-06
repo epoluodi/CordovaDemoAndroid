@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import com.example.yangxiaoguang.cordovademo.Cordova.CDVCore;
+
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
@@ -19,7 +21,8 @@ import java.util.concurrent.Executors;
  */
 public class CordovaWebActivity extends AppCompatActivity implements CordovaInterface {
 
-    CordovaWebView cordovaWebView;
+    private CordovaWebView cordovaWebView;
+    private CDVCore cdvCore;
 
     //系统线程池，创建后由Cordova调用。TODO：需要移植
     private final ExecutorService threadPool = Executors.newCachedThreadPool();
@@ -29,21 +32,54 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coedova_web);
-        cordovaWebView = (CordovaWebView)findViewById(R.id.cordovawebview);
-        cordovaWebView.loadUrl("http://m.taobao.com");
+        cordovaWebView = (CordovaWebView) findViewById(R.id.cordovawebview);
+
+        //初始化 CordovaCore
+        cdvCore = new CDVCore(this, cordovaWebView);
+
+        Intent intent = getIntent();
+        cdvCore.loadUrl(intent.getStringExtra("url"));
     }
 
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == 4)
-        {
+        if (keyCode == 4) {
             finish();
             return false;
         }
         return super.onKeyUp(keyCode, event);
     }
 
+
+    /**
+     * TODO 在activity 进行激活状态需要对cordova 进行恢复
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cordovaWebView.handleResume(true,true);
+    }
+
+    /**
+     * TODO 在activity 进行挂起状态需要对cordova 进行挂起
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cordovaWebView.handlePause(true);
+    }
+
+    /**
+     * TODO 在activity 销毁需要对cordova 进行销毁
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cordovaWebView.handleDestroy();
+    }
+
+    //需要复制下面代码到对对应activity中
     //TODO 以下代码是Cordova 的接口实现，在移植过程中，需要加入到被调用的Activity中
     @Override
     public void startActivityForResult(CordovaPlugin cordovaPlugin, Intent intent, int i) {
@@ -64,6 +100,7 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
 
     @Override
     public Object onMessage(String s, Object o) {
+        cdvCore.onMessage(s, o);//插件交互传入CordovaCore进行控制处理
         return null;
     }
 
@@ -72,4 +109,6 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
     public ExecutorService getThreadPool() {
         return threadPool;
     }
+
+    // 结束
 }

@@ -4,14 +4,106 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="com.example.yangxiaoguang.cordovademo.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+
+    <RelativeLayout
+        android:id="@+id/web1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/back">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="业务A"
+            android:id="@+id/t1"
+            android:textSize="32dp" />
+        <TextView
+            android:id="@+id/state"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginLeft="20dp"
+            android:text="下载进度：0%"
+            android:layout_below="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btndownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="下载"
+            android:textSize="24dp"
+            android:layout_marginRight="10dp"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/btndownload"
+            android:text="浏览"
+            android:textSize="24dp"
+
+            android:id="@+id/btnweb"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/web2"
+        android:layout_below="@+id/web1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/back">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="业务B"
+            android:id="@+id/t2"
+            android:textSize="32dp" />
+        <TextView
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginLeft="20dp"
+            android:text="下载进度：0%"
+            android:id="@+id/state2"
+            android:layout_below="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btndownload2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="下载"
+            android:textSize="24dp"
+            android:layout_marginRight="10dp"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/btndownload2"
+            android:text="浏览"
+            android:textSize="24dp"
+
+            android:id="@+id/btnweb2"
+            />
+    </RelativeLayout>
+
+
 </RelativeLayout>

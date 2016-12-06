@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<title>首页</title>
+		<style type="text/css">
+			.long_button {
+				display: block;
+				border: 1px solid;
+				font-weight: 700;
+				margin: 5px;
+				height: 33px;
+				line-height: 33px;
+				text-align: center;
+				letter-spacing: 0.5em;
+				color: #fff;
+				background-color: #0a7e81;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<a class="long_button" onclick="click1()">新窗口</a>
+		<a class="long_button" onclick="click2()">Post</a>
+
+		<script src="../cordova.js" type="text/javascript"></script>
+		<script src="../js/jquery-2.1.1.js" type="text/javascript"></script>
+		<script>
+			document.addEventListener("deviceready", onDeviceReady, false);
+
+			function onDeviceReady() {
+
+			}
+
+			function click1() {
+				//调用js 打开一个新窗口
+				cdv.webview.open({
+					//参数url地址，指向一个新地址
+					"url": "file:///android_asset/pms/html/index.html"
+				});
+			}
+
+			function click2() {
+
+				stereo.ajax.post({
+					"url": "app/person/get",
+					"dataType": "json"
+				}, ajaxsuccess, null);
+			}
+
+			function ajaxsuccess(data) {
+				str = JSON.stringify(data);
+				alert(str);
+
+			}
+		</script>
+
+</html>
