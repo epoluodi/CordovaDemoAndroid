@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0,minimal-ui">
+  <title>表单页</title>
+  <link rel="stylesheet" href="template/css/template.style.ios.min.css" />
+  <link rel="stylesheet" href="template/css/template.webapp-style.min.css" /> 
+ </head>
+
+<body class="grey-bg">
+  <div class="views">
+    <div class="view">
+      <div class="pages">
+        <div class="page" data-page="page-webapp-mail-edit">
+          <section class="wh-section wh-section-bottomfixed">
+            <article class="wh-edit wh-edit-forum">
+              <div class="mail-edit">
+                <table class="wh-table-edit" style="border-collapse:separate;border-spacing: 0 10px;">
+                  <tr>
+                    <th>所属栏目<i class="fa fa-asterisk"></i>：</th>
+                    <td>
+						<input class="edit-ipt-r edit-ipt-arrow" type="text" readonly value="" name="select" placeholder="请选择" />
+					</td>
+                  </tr>
+                  <tr>
+                    <th>信息标题<i class="fa fa-asterisk"></i>：</th>
+                    <td>
+                      <input class="edit-ipt-r" type="text" placeholder="李小琳" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>显示方式<i class="fa fa-asterisk"></i>：</th>
+                    <td>
+                      <ul class="edit-radio">
+                        <li>
+                          <label class="label-checkbox item-content">
+                            <!-- Checked by default -->
+                            <input type="checkbox" name="my-checkbox" value="细览不显示" checked="checked">
+                            <div class="item-media">
+                              <i class="icon icon-form-checkbox"></i>
+                            </div>
+                            <div class="item-inner">
+                              <div class="item-title">细览不显示</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="label-checkbox item-content">
+                            <!-- Checked by default -->
+                            <input type="checkbox" name="my-checkbox" value="首页显示为红色" checked="checked">
+                            <div class="item-media">
+                              <i class="icon icon-form-checkbox"></i>
+                            </div>
+                            <div class="item-inner">
+                              <div class="item-title">首页显示红色</div>
+                            </div>
+                          </label>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>附件<i class="fa fa-asterisk"></i>：</th>
+                    <td>
+                      <ul class="edit-upload">
+                        <li class="edit-upload-in" onclick="addImg();"><span><i class="fa fa-plus"></i></span></li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>正文<i class="fa fa-asterisk"></i>：</th>
+                    <td>
+                      <div class="edit-txta-box">
+                        <textarea class="edit-txta edit-txta-l" placeholder="请输入文字"></textarea>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </article>
+          </section>
+          <footer class="wh-footer wh-footer-forum">
+            <div class="wh-container">
+              <div class="wh-footer-btn row">
+                <div class="webapp-footer-linebtn">
+                  <div class="fl clearfix">
+                    <a href="#" class="panel-return-a">清空</a>
+                    <a href="#" class="panel-send-a">发送</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="template/js/jquery-1.8.0.min.js"></script>
+  <script src="template/js/template.min.js"></script>
+  <script type="text/javascript">
+  //Export DOM7 to local variable to make it easy accessable
+ var myApp = new Framework7({
+          fastClicks: false,
+    });
+
+  var $$ = Dom7;
+
+  $$('.action1').on('click', function() {
+    myApp.alert('Action 1');
+  });
+  $$('.action2').on('click', function() {
+    myApp.alert('Action 2');
+  });
+
+  //添加图片
+	var index = 0;
+    function addImg(){
+	    $(".edit-upload-in").before(       
+		   '<li class="edit-upload-ed" id="imgli_'+index+'" style="display:none">'+
+		       '<span>'+
+		       	   '<img src="" id="imgShow_'+index+'"/>'+
+			       '<em>'+
+			       	 '<i onclick="removeImg('+index+');" class="fa fa-minus-circle"></i>'+
+			       '</em>'+
+		       '</span>'+
+		       '<input type="file" id="up_img_'+index+'" style="display:none" name="imgFile"/>'+
+		       '<input type="hidden" id="fileName_'+index+'" name="fileName"/>'+
+       	   '</li>');
+	   var img_li_id = "imgli_"+index;
+	   var up_img_id = "up_img_"+index;
+	   
+	   $("#up_img_"+index).click();
+	  
+	   index++;
+	   callBackFun(up_img_id,img_li_id);
+    }
+
+	function callBackFun(upImgId,imgliId){
+		$("#"+imgliId).show();
+	}
+
+	//删除缩略图
+    function removeImg(index){
+	   $("#imgli_"+index).remove();
+	   $("#up_img_"+index).remove();
+    }
+	
+
+
+  </script>
+</body>

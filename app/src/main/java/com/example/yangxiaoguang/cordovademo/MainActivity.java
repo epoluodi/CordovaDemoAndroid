@@ -38,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
+
             Intent intent;
             switch (view.getId())
             {
                 case R.id.btnweb:
+//                    file:///android_asset/test/webapp-infomation-edit.html
                     intent = new Intent(MainActivity.this,CordovaWebActivity.class);
                     intent.putExtra("url","file:///android_asset/pms/html/index.html");
                     startActivity(intent);
