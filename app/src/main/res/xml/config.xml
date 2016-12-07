@@ -8,7 +8,9 @@
     <feature name="WebViewRequest">
         <param name="android-package" value="com.example.yangxiaoguang.cordovademo.Cordova.Plugin.WebViewRequest" />
     </feature>
-
+    <feature name="AjaxRequest">
+        <param name="android-package" value="com.example.yangxiaoguang.cordovademo.Cordova.Plugin.AjaxRequest" />
+    </feature>
 
 
     <name>Demo</name>

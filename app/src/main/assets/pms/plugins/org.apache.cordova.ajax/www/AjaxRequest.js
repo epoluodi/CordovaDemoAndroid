@@ -1,5 +1,5 @@
 //fengxf added begin:
-cordova.define("com.suypower.stereo.suehome.CordovaPlugin.ajax.AjaxRequest", function(require,exports,module){
+cordova.define("com.example.yangxiaoguang.cordovademo.Cordova.Plugin.AjaxRequest", function(require,exports,module){
 
     var exec = require('cordova/exec');
 
@@ -13,13 +13,13 @@ cordova.define("com.suypower.stereo.suehome.CordovaPlugin.ajax.AjaxRequest", fun
 		   第五个 :传递的参数  以json的格式 
 		 */
 		 //get请求
-        get: function(jsonparams,getRequestHeaderCallBack,getRequestHeaderCallBackerr) {
-            exec(getRequestHeaderCallBack, getRequestHeaderCallBackerr, "AjaxRequest", "get", [jsonparams]);
-        },
+//        get: function(jsonparams,getRequestHeaderCallBack,getRequestHeaderCallBackerr) {
+//            exec(getRequestHeaderCallBack, getRequestHeaderCallBackerr, "AjaxRequest", "get", [jsonparams]);
+//        },
         //post请求
 		post: function(jsonparams,getRequestHeaderCallBack,getRequestHeaderCallBackerr) {
 
-              exec(getRequestHeaderCallBack, getRequestHeaderCallBackerr, "AjaxRequest", "post", [jsonparams]);
+              exec(getRequestHeaderCallBack, getRequestHeaderCallBackerr, "AjaxRequest", "POST", [jsonparams]);
         },
 
     };

@@ -9,9 +9,9 @@ module.exports = [
     },
      {
         "file": "plugins/org.apache.cordova.ajax/www/AjaxRequest.js",
-        "id": "com.suypower.stereo.suehome.CordovaPlugin.ajax.AjaxRequest",
+        "id": "com.example.yangxiaoguang.cordovademo.Cordova.Plugin.AjaxRequest",
         "merges": [
-        "ajax"
+        "cdv.ajax"
         ]
      },
 

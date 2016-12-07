@@ -22,6 +22,7 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -204,6 +205,47 @@ public class HttpController {
             return null;
         }
     }
+    /**
+     * 读取服务器返回数据
+     *
+     * @return
+     */
+    public byte[] getRespBodyData() {
+        try {
+            if (m_httpResp != null) {
+                InputStream is = m_httpResp.getEntity().getContent();
+                byte[] bytData = InputStreamToByte(is);
+                is.close();
+                return bytData;
+            }
+        } catch (IllegalStateException e) {
 
+        } catch (IOException e) {
+
+        }
+
+        return null;
+    }
+
+    private byte[] InputStreamToByte(InputStream is) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        int ch;
+        byte[] buf = new byte[1024 * 4];
+        byte data[] = null;
+
+        try {
+            while ((ch = is.read(buf)) != -1) {
+                out.write(buf, 0, ch);
+            }
+            data = out.toByteArray();
+            out.close();
+        } catch (IOException e) {
+
+        } finally {
+
+        }
+
+        return data;
+    }
 
 }

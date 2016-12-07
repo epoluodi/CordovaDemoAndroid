@@ -50,15 +50,20 @@
 
 			function click2() {
 
-				stereo.ajax.post({
-					"url": "app/person/get",
-					"dataType": "json"
-				}, ajaxsuccess, null);
+				cdv.ajax.post({
+					"url": "http://m.taobao.com",
+					"params": "123"
+				}, ajaxsuccess, ajaxfail);
 			}
 
 			function ajaxsuccess(data) {
-				str = JSON.stringify(data);
-				alert(str);
+
+				alert(data);
+
+			}
+			function ajaxfail(data) {
+
+				alert(data);
 
 			}
 		</script>
