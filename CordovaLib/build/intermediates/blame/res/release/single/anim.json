@@ -1,0 +1,118 @@
+[
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/scale.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/scale.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/slide_out_right.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/slide_out_right.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/anim_optionmenu.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/anim_optionmenu.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_slide_in_top.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_fade_in.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_fade_out.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/anim_shareview_exit2.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/anim_shareview_exit2.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/slide_in_from_bottom.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/slide_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/anim_bottommenu_enter.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/anim_bottommenu_enter.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/slide_in_left.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/slide_in_left.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/anim_bottommenu_exit.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/anim_bottommenu_exit.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/anim_shareview_enter.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/anim_shareview_enter.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_slide_in_bottom.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_slide_out_bottom.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_slide_out_top.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/anim_shareview_exit.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/anim_shareview_exit.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_popup_exit.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/anim_optionmenu_exit.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/anim_optionmenu_exit.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_popup_enter.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/alpha.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/alpha.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/slide_out_to_top.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/slide_out_to_top.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/prephoto_alpha.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/prephoto_alpha.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/photonumber_scale.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/photonumber_scale.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/scale_exit.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/scale_exit.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/alpha_exit.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/alpha_exit.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/slide_out_to_bottom.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/slide_out_to_bottom.xml"
+    },
+    {
+        "merged": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/res/merged/release/anim/slide_in_from_top.xml",
+        "source": "/Volumes/文件/suyuan/12苏电家园/11程序管理/Android/CordovaLib/build/intermediates/exploded-aar/Android/SuypowerLib/unspecified/res/anim/slide_in_from_top.xml"
+    }
+]
