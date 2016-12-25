@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.yangxiaoguang.cordovademo.Sign.SignActivity;
+
 import org.apache.cordova.CordovaWebView;
 import org.w3c.dom.Text;
 
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.btnweb2:
+                    Intent intent1=new Intent(MainActivity.this, SignActivity.class);
+                    startActivity(intent1);
                     break;
                 case R.id.btndownload://下载
                     fileController = new FileController("http://www.ishangban.com/pms/IOS_WEB.zip", Environment.getExternalStorageDirectory().getAbsolutePath());

@@ -14,10 +14,10 @@ import org.json.JSONException;
  *
  * @author yxg
  */
-public class WebViewRequest extends CordovaPlugin {
+public class iAppRevision extends CordovaPlugin {
 
 
-    private CallbackContext callbackContext = null;
+
 
 
     @Override
@@ -32,9 +32,9 @@ public class WebViewRequest extends CordovaPlugin {
 
 
         //新窗口
-        if (action.equals("newOpen")) {
-            message.obj = args.getJSONObject(0);//json数据
-            this.cordova.onMessage(CDVCore.NEWOPENWINDOWS, message);
+        if (action.equals("showSign")) {
+            this.jsondata = args.getJSONObject(0);//json数据
+            this.cordova.onMessage(CDVCore.SIGN, this);
             return true;
         }
 

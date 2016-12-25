@@ -38,7 +38,7 @@ public class AjaxRequest extends CordovaPlugin {
 
             HttpController httpController=new HttpController();
             httpController.openRequest(url,HttpController.REQ_METHOD_POST);
-            httpController.setPostValuesForKey("paramss",params);
+            httpController.setPostValuesForKey("params",params);
             httpController.setEntity(httpController.getPostData());
             if (httpController.sendRequest())
             {

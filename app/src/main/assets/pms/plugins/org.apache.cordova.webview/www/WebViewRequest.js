@@ -19,7 +19,7 @@ cordova.define("com.example.yangxiaoguang.cordovademo.Cordova.Plugin.WebViewRequ
 
         //打开新窗口
         open: function(jsonparams,getRequestHeaderCallBackSuccess,getRequestHeaderCallBackFail) {
-           exec(getRequestHeaderCallBackSuccess, getRequestHeaderCallBackFail, "WebViewRequest", "NEWOPENWINDOWS", [jsonparams]);
+           exec(getRequestHeaderCallBackSuccess, getRequestHeaderCallBackFail, "WebViewRequest", "newOpen", [jsonparams]);
         },
 
     };

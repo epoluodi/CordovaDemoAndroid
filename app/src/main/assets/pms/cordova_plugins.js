@@ -14,6 +14,13 @@ module.exports = [
         "cdv.ajax"
         ]
      },
+     {
+        "file": "plugins/iAppRevisionPlugin/iAppRevision.js",
+        "id": "com.example.yangxiaoguang.cordovademo.Cordova.Plugin.iAppRevision",
+        "merges": [
+        "cdv.sign"
+        ]
+     },
 
 ];
 module.exports.metadata = 

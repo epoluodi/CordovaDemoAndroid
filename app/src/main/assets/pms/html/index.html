@@ -30,7 +30,7 @@
 
 		<a class="long_button" onclick="click1()">新窗口</a>
 		<a class="long_button" onclick="click2()">Post</a>
-
+		<a class="long_button" onclick="click3()">签名</a>
 		<script src="../cordova.js" type="text/javascript"></script>
 		<script src="../js/jquery-2.1.1.js" type="text/javascript"></script>
 		<script>
@@ -65,6 +65,18 @@
 
 				alert(data);
 
+			}
+			function click3()
+			{
+				cdv.sign.showSign(
+					{"111":"111"},
+					signCallback
+				);
+			}
+
+			function signCallback(json)
+			{
+				alert(json);
 			}
 		</script>
 

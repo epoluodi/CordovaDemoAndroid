@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/signBack"
+    android:orientation="horizontal"
+    tools:context="com.example.yangxiaoguang.cordovademo.Sign.SignActivity">
+
+    <com.kinggrid.iapprevision.iAppRevisionView
+        android:id="@+id/signview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/undo"
+            android:text="撤销"
+            android:textSize="18dp"
+            android:background="@drawable/sign_btn_selector"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/redo"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:background="@drawable/sign_btn_selector"
+            android:textColor="@android:color/white"
+            android:text="恢复"
+            android:layout_below="@+id/undo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+        <Button
+            android:id="@+id/clean"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:background="@drawable/sign_btn_selector"
+            android:textColor="@android:color/white"
+            android:text="清除"
+            android:layout_below="@+id/redo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <Button
+            android:id="@+id/btnreturn"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:background="@drawable/sign_btn_selector"
+            android:textColor="@android:color/white"
+            android:text="返回"
+            android:layout_below="@+id/clean"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/save"
+            android:textColor="@android:color/holo_green_light"
+            android:text="保存"
+            android:textSize="18dp"
+            android:background="@drawable/sign_btnsave_selector"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

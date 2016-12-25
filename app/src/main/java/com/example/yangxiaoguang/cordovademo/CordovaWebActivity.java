@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 
 import com.example.yangxiaoguang.cordovademo.Cordova.CDVCore;
@@ -14,6 +15,8 @@ import org.apache.cordova.CordovaWebView;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static com.example.yangxiaoguang.cordovademo.Cordova.CDVCore.SIGNREQUESTCODE;
 
 
 /**
@@ -51,6 +54,30 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
         return super.onKeyUp(keyCode, event);
     }
 
+
+    /**
+     * 处理其它窗口返回
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SIGNREQUESTCODE)
+        {
+            if (resultCode==1)
+            {
+               final String uuid = data.getStringExtra("uuid");
+                Log.i("签名文件",uuid);
+                cdvCore.callbackContext.success(uuid);
+                cdvCore.callbackContext=null;
+
+                return;
+            }
+
+        }
+    }
 
     /**
      * TODO 在activity 进行激活状态需要对cordova 进行恢复
