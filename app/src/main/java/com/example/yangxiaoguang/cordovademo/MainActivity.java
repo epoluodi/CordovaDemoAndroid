@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 //                    file:///android_asset/pms/html/index.html
 //                    file:///android_asset/test/webapp-infomation-edit.html
                     intent = new Intent(MainActivity.this, CordovaWebActivity.class);
-                    intent.putExtra("url", "file:///android_asset/pms/html/index.html");
+                    intent.putExtra("url", "http://m.taobao.com");
                     startActivity(intent);
                     break;
                 case R.id.btnweb2:
