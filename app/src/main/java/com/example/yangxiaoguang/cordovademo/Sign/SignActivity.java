@@ -12,11 +12,14 @@ import android.widget.Toast;
 
 import com.example.yangxiaoguang.cordovademo.R;
 import com.kinggrid.iapprevision.iAppRevisionView;
+import com.kinggrid.iapprevision_iwebrevision.FieldEntity;
+import com.kinggrid.iapprevision_iwebrevision.iAppRevision_iWebRevision;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Map;
 import java.util.UUID;
 
 public class SignActivity extends AppCompatActivity {
@@ -28,10 +31,10 @@ public class SignActivity extends AppCompatActivity {
 
     //控制按钮
     private Button btnundo,btnredo,btnclean,btnreturn,btnsave;
-
+    private String webService, recordID, fieldName, userName;
 
     //授权信息
-    private String copyRight="SxD/phFsuhBWZSmMVtSjKZmm/c/3zSMrkV2Bbj5tznSkEVZmTwJv0wwMmH/+p6wLiUHbjadYueX9v51H9GgnjUhmNW1xPkB++KQqSv/VKLDsR8V6RvNmv0xyTLOrQoGzAT81iKFYb1SZ/Zera1cjGwQSq79AcI/N/6DgBIfpnlwiEiP2am/4w4+38lfUELaNFry8HbpbpTqV4sqXN1WpeJ7CHHwcDBnMVj8djMthFaapMFm/i6swvGEQ2JoygFU368sLBQG57FhM8Bkq7aPAVnSivRuSlEWh/3amWqlmf53x6aD2yiupr6ji7hzsE6/Q8+8WcsrGVLl3zOGriO8JAgfD/aknj9SAdcbqTXUmtPiVWEbHWAH22+t7LdPt+jEN7FwOixTutkXFqN7Z6YvH2Kcd2k72+1SjzDw0qWe3PQeSgCNRP4FpYjl8hG/IVrYXAg6SVLcb1PurpgdtpX/jJOW8fXpxdRHfEuWC1PB9ruQ=";
+    public static String copyRight="SxD/phFsuhBWZSmMVtSjKZmm/c/3zSMrkV2Bbj5tznSkEVZmTwJv0wwMmH/+p6wLiUHbjadYueX9v51H9GgnjUhmNW1xPkB++KQqSv/VKLDsR8V6RvNmv0xyTLOrQoGzAT81iKFYb1SZ/Zera1cjGwQSq79AcI/N/6DgBIfpnlwiEiP2am/4w4+38lfUELaNFry8HbpbpTqV4sqXN1WpeJ7CHHwcDBnMVj8djMthFaapMFm/i6swvGEQ2JoygFU3CQHU1ScyOebPLnpsDlQDzLvKeTdxzwi2Wk0Yn+WSxoXx6aD2yiupr6ji7hzsE6/QqGcC+eseQV1yrWJ/1FwxLCjX+xEgRoNggvmgA8zkJXOVWEbHWAH22+t7LdPt+jENwSCMsAYnhGWJ0gXIIaLjG32poSbszHQQyNDZrHtqZuuSgCNRP4FpYjl8hG/IVrYXo/POmAlKHHVOdR0F5DQjr+W8fXpxdRHfEuWC1PB9ruQ=";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,13 @@ public class SignActivity extends AppCompatActivity {
         btnclean.setOnClickListener(onClickListenerSignCotrol);
         btnreturn.setOnClickListener(onClickListenerSignCotrol);
         btnsave.setOnClickListener(onClickListenerSignCotrol);
+
+        webService = getIntent().getStringExtra("webService");
+        recordID = getIntent().getStringExtra("recordID");
+        fieldName = getIntent().getStringExtra("fieldName");
+        userName = getIntent().getStringExtra("userNames");
+
+
     }
 
 
@@ -94,9 +104,9 @@ public class SignActivity extends AppCompatActivity {
     };
 
 
-    public void saveBitmap(String uuid,Bitmap bitmap) {
+    public void saveBitmap(String uuid, Bitmap bitmap) {
 
-        File f = new File(Environment.getExternalStorageDirectory(),uuid+".png");
+        File f = new File(Environment.getExternalStorageDirectory(), uuid + ".png");
         if (f.exists()) {
             f.delete();
         }
@@ -105,16 +115,42 @@ public class SignActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        Intent intent=new Intent();
-        intent.putExtra("uuid",uuid);
-        setResult(1,intent);
+        Intent intent = new Intent();
+        intent.putExtra("uuid", uuid);
+        if (uploadSignData(bitmap))
+            setResult(RESULT_OK, intent);
+        else
+            setResult(RESULT_CANCELED);
+
+    }
+
+
+    /**
+     * 上传签批n
+     *
+     * @param signbmp
+     */
+    public Boolean uploadSignData(Bitmap signbmp) {
+
+        iAppRevision_iWebRevision iAppRevision_iWebRevision = new iAppRevision_iWebRevision();
+
+        iAppRevision_iWebRevision.setCopyRight(this, copyRight, userName);
+        Map<String, FieldEntity> recordIdMap = iAppRevision_iWebRevision.loadRevision(webService, recordID, userName);
+        if (recordIdMap == null)
+            return false;
+
+        FieldEntity fieldEntity=null;
+        if (recordIdMap.size()>0)
+        {
+            String key = recordIdMap.keySet().iterator().next();
+            fieldEntity=recordIdMap.get(key);
+        }
+        boolean r = iAppRevision_iWebRevision.saveRevision(webService, signbmp, fieldName, userName, fieldEntity, false);
+
+        return r;
 
     }
 

@@ -18,7 +18,11 @@ cordova.define("com.example.yangxiaoguang.cordovademo.Cordova.Plugin.iAppRevisio
 
               exec(getRequestHeaderCallBack, null, "iAppRevisionPlugin", "showSign", [jsonparams]);
         },
+        //读取签批数据
+        loadSign: function(jsonparams,getRequestHeaderCallBack) {
 
+        exec(getRequestHeaderCallBack, null, "iAppRevisionPlugin", "loadSign", [jsonparams]);
+        },
     };
 
 });

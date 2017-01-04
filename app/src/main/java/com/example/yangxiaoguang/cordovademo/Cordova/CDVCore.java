@@ -8,12 +8,16 @@ import android.util.Log;
 
 import com.example.yangxiaoguang.cordovademo.CordovaWebActivity;
 import com.example.yangxiaoguang.cordovademo.Sign.SignActivity;
+import com.kinggrid.iapprevision_iwebrevision.FieldEntity;
+import com.kinggrid.iapprevision_iwebrevision.iAppRevision_iWebRevision;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.LOG;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 /**
  * 处理Cordova核心处理控制类
@@ -28,7 +32,7 @@ public class CDVCore {
 
     public static final String NEWOPENWINDOWS = "NEWOPENWINDOWS";// 打开新的web窗口
     public static final String SIGN = "SIGN";//签名
-
+    public static final String LOADSIGN = "LOADSIGN";//读取签批数据
 
     public CallbackContext callbackContext = null;//js回调 对象
     public static final int NEWOPENWINDOWS_ENUM = 0;//打开新窗口
@@ -79,6 +83,26 @@ public class CDVCore {
             message.obj =((CordovaPlugin)o).jsondata;//将 js 的参数传递下去
             cdvhandler.sendMessage(message);
             return;
+        }else if (s.equals(LOADSIGN)) {
+
+            callbackContext = ((CordovaPlugin)o).callbackContext;//暂存 回调对象
+            JSONObject jsonObject =(JSONObject) ((CordovaPlugin)o).jsondata;//将 js 的参数传递下去
+
+            try
+            {
+                iAppRevision_iWebRevision iAppRevision_iWebRevision = new iAppRevision_iWebRevision();
+                iAppRevision_iWebRevision.setCopyRight(activity, SignActivity.copyRight, null);
+                Map<String, FieldEntity> recordIdMap = iAppRevision_iWebRevision.loadRevision(
+                        jsonObject.getString("webService"), jsonObject.getString("recordID"),
+                        jsonObject.getString("userName"));
+                recordIdMap.keySet();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                callbackContext.error("读取签批数据失败");
+            }
+            return;
         }
 
     }
@@ -106,6 +130,16 @@ public class CDVCore {
                     break;
                 case SING_ENUM:
                     Intent intent = new Intent(activity, SignActivity.class);
+                    JSONObject jsonObject1=(JSONObject)msg.obj;
+                    try {
+                        intent.putExtra("webService", jsonObject1.getString("webService"));
+                        intent.putExtra("recordID", jsonObject1.getString("recordID"));
+                        intent.putExtra("fieldName", jsonObject1.getString("fieldName"));
+                        intent.putExtra("userName", jsonObject1.getString("userName"));
+                    }
+                    catch (Exception e)
+                    {e.printStackTrace();}
+
                     activity.startActivityForResult(intent,SIGNREQUESTCODE);
                     break;
 

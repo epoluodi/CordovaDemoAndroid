@@ -38,6 +38,11 @@ public class iAppRevision extends CordovaPlugin {
             return true;
         }
 
+        if (action.equals("loadSign")) {
+            this.jsondata = args.getJSONObject(0);//json数据
+            this.cordova.onMessage(CDVCore.LOADSIGN, this);
+            return true;
+        }
 
         return true;
     }

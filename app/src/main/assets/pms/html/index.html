@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta name="format-detection" content="telephone=no">
-		<link rel="stylesheet" type="text/css" href="../css/style.css" />
-		<title>首页</title>
-		<style type="text/css">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<title>首页</title>
+	<style type="text/css">
 			.long_button {
 				display: block;
 				border: 1px solid;
@@ -24,16 +24,18 @@
 				background-color: #0a7e81;
 			}
 		</style>
-	</head>
+</head>
 
-	<body>
+<body>
 
-		<a class="long_button" onclick="click1()">新窗口</a>
-		<a class="long_button" onclick="click2()">Post</a>
-		<a class="long_button" onclick="click3()">签名</a>
-		<script src="../cordova.js" type="text/javascript"></script>
-		<script src="../js/jquery-2.1.1.js" type="text/javascript"></script>
-		<script>
+<p>测试</p>
+<a class="long_button" onclick="click1()">新窗口</a>
+<a class="long_button" onclick="click2()">Post</a>
+<a class="long_button" onclick="click3()">签名</a>
+<a class="long_button" onclick="click4()">读取签批数据</a>
+<script src="../cordova.js" type="text/javascript"></script>
+<script src="../js/jquery-2.1.1.js" type="text/javascript"></script>
+<script>
 			document.addEventListener("deviceready", onDeviceReady, false);
 
 			function onDeviceReady() {
@@ -42,42 +44,79 @@
 
 			function click1() {
 				//调用js 打开一个新窗口
-				cdv.webview.open({
+				cdv.webview.open(
+                {
 					//参数url地址，指向一个新地址
-					"url": "file:///android_asset/pms/html/index.html"
-				});
+
+                                 "url": "/pms/html/index.html"
+				}
+
+                                 );
 			}
 
-			function click2() {
+        function click2() {
 
 				cdv.ajax.post({
-					"url": "http://m.taobao.com",
-					"params": "123"
-				}, ajaxsuccess, ajaxfail);
-			}
+                              "url": "http://m.baidu.com",
+                              "params": "123"
+                              }, ajaxsuccess, ajaxfail);
+        }
 
-			function ajaxsuccess(data) {
+        function ajaxsuccess(data) {
 
-				alert(data);
+            alert(data);
 
-			}
-			function ajaxfail(data) {
+        }
+        function ajaxfail(data) {
 
-				alert(data);
+            alert(data);
 
-			}
-			function click3()
-			{
-				cdv.sign.showSign(
-					{"111":"111"},
-					signCallback
-				);
-			}
+        }
 
-			function signCallback(json)
-			{
-				alert(json);
-			}
+
+
+        function click3()
+        {
+            cdv.sign.showSign(
+                {
+                              "webService":"http://oa.goldgrid.com:88/iWebRevisionEx/iWebServer.jsp",//未定义
+                              "recordID":"201701041829",//文档记录号
+                              "fieldName":"SendOut",//签名区域名称
+                              "userName":"wanghr", //签批用户
+                              "haveFieldValue":"1"  //是否检查原始签批数据 1 检查 0 不检查
+                },
+                signCallback,signCallbackerror
+            );
+        }
+
+        function signCallback(json)
+        {
+            alert(json);
+        }
+        function signCallbackerror(json)
+        {
+            alert(json);
+        }
+
+
+        function click4()
+        {
+            cdv.sign.loadSign(
+                              {
+                              "webService":"http://oa.goldgrid.com:88/iWebRevisionEx/iWebServer.jsp",//未定义
+                              "recordID":"201701041829",//文档记录号
+                              "fieldName":"SendOut",//签名区域名称
+                              "userName":"wanghr"
+                              },
+                              loadsignCallback
+                              );
+        }
+
+
+        function loadsignCallback(json)
+        {
+            alert(json);
+        }
 		</script>
 
 </html>
