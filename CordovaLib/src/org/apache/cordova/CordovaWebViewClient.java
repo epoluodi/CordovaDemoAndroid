@@ -115,7 +115,12 @@ public class CordovaWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
         Log.i("地址转换",url);
-
+        if (url.contains("stereo://prefile/"))
+        {
+            String userid = url.substring("stereo://prefile/".length(),url.length());
+            cordova.onMessage("URLTRAN",userid);
+            return true;
+        }
 
         return helper.shouldOverrideUrlLoading(view, url);
     }

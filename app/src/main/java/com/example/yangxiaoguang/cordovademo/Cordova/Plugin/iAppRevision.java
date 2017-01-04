@@ -8,7 +8,6 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * app 系统插件
@@ -34,10 +33,7 @@ public class iAppRevision extends CordovaPlugin {
 
         //新窗口
         if (action.equals("showSign")) {
-
-            String json = args.getString(0);
-            JSONObject jsonObject=new JSONObject(json);
-            this.jsondata = jsonObject;//json数据
+            this.jsondata = args.getJSONObject(0);//json数据
             this.cordova.onMessage(CDVCore.SIGN, this);
             return true;
         }

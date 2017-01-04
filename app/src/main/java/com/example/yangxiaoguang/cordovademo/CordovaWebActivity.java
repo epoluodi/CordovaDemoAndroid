@@ -13,8 +13,6 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -43,10 +41,8 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
         cdvCore = new CDVCore(this, cordovaWebView);
 
         Intent intent = getIntent();
-
         cdvCore.loadUrl(intent.getStringExtra("url"));
     }
-
 
 
     @Override
@@ -83,32 +79,32 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
         }
     }
 
-//    /**
-//     * TODO 在activity 进行激活状态需要对cordova 进行恢复
-//     */
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        cordovaWebView.handleResume(true,true);
-//    }
-//
-//    /**
-//     * TODO 在activity 进行挂起状态需要对cordova 进行挂起
-//     */
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        cordovaWebView.handlePause(true);
-//    }
+    /**
+     * TODO 在activity 进行激活状态需要对cordova 进行恢复
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cordovaWebView.handleResume(true,true);
+    }
+
+    /**
+     * TODO 在activity 进行挂起状态需要对cordova 进行挂起
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cordovaWebView.handlePause(true);
+    }
 
     /**
      * TODO 在activity 销毁需要对cordova 进行销毁
      */
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        cordovaWebView.handleDestroy();
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cordovaWebView.handleDestroy();
+    }
 
     //需要复制下面代码到对对应activity中
     //TODO 以下代码是Cordova 的接口实现，在移植过程中，需要加入到被调用的Activity中

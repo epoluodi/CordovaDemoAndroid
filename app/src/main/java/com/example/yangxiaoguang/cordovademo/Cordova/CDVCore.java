@@ -15,9 +15,6 @@ import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.LOG;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 处理Cordova核心处理控制类
  * Created by yangxiaoguang on 2016/12/4.
@@ -57,8 +54,7 @@ public class CDVCore {
      * @param url
      */
     public void loadUrl(String url) {
-
-        cordovaWebView.loadUrl(url,null);
+        cordovaWebView.loadUrl(url);
     }
 
 
@@ -110,16 +106,6 @@ public class CDVCore {
                     break;
                 case SING_ENUM:
                     Intent intent = new Intent(activity, SignActivity.class);
-                    JSONObject jsonObject1=(JSONObject)msg.obj;
-                    try {
-                        intent.putExtra("webService", jsonObject1.getString("webService"));
-                        intent.putExtra("recordID", jsonObject1.getString("recordID"));
-                        intent.putExtra("fieldName", jsonObject1.getString("fieldName"));
-                        intent.putExtra("userName", jsonObject1.getString("userName"));
-                    }
-                    catch (Exception e)
-                    {e.printStackTrace();}
-
                     activity.startActivityForResult(intent,SIGNREQUESTCODE);
                     break;
 
