@@ -2,6 +2,8 @@ package com.example.yangxiaoguang.cordovademo.Cordova;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -17,6 +19,8 @@ import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.LOG;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Map;
 
 /**
@@ -95,7 +99,25 @@ public class CDVCore {
                 Map<String, FieldEntity> recordIdMap = iAppRevision_iWebRevision.loadRevision(
                         jsonObject.getString("webService"), jsonObject.getString("recordID"),
                         jsonObject.getString("userName"));
-                recordIdMap.keySet();
+                for (String strkey : recordIdMap.keySet())
+                {
+                    FieldEntity fieldEntity = recordIdMap.get(strkey);
+                    if (fieldEntity.hasFieldBitmap())
+                    {
+                        File f = new File(Environment.getExternalStorageDirectory(), strkey + ".png");
+                        if (f.exists()) {
+                            f.delete();
+                        }
+                        try {
+                            FileOutputStream out = new FileOutputStream(f);
+                            fieldEntity.getFieldBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+                            out.flush();
+                            out.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
             catch (Exception e)
             {
