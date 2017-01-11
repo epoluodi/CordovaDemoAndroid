@@ -104,6 +104,7 @@ public class CDVCore {
                     FieldEntity fieldEntity = recordIdMap.get(strkey);
                     if (fieldEntity.hasFieldBitmap())
                     {
+
                         File f = new File(Environment.getExternalStorageDirectory(), strkey + ".png");
                         if (f.exists()) {
                             f.delete();
@@ -158,6 +159,8 @@ public class CDVCore {
                         intent.putExtra("recordID", jsonObject1.getString("recordID"));
                         intent.putExtra("fieldName", jsonObject1.getString("fieldName"));
                         intent.putExtra("userName", jsonObject1.getString("userName"));
+                        intent.putExtra("haveFieldValue", jsonObject1.getString("haveFieldValue"));
+
                     }
                     catch (Exception e)
                     {e.printStackTrace();}
