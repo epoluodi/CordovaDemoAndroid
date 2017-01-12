@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -47,6 +48,7 @@ public class SignActivity extends AppCompatActivity {
 
         iAppRevision_iWebRevision = new iAppRevision_iWebRevision();
         iAppRevision_iWebRevision.setCopyRight(this, copyRight, null);
+        iAppRevision_iWebRevision.isDebug=true;
         //初始化view组件
         iAppRevisionView = (iAppRevisionView) findViewById(R.id.signview);
         btnundo = (Button) findViewById(R.id.undo);
@@ -191,10 +193,11 @@ public class SignActivity extends AppCompatActivity {
     public Boolean uploadSignData(Bitmap bitmap) {
 
         boolean r = iAppRevision_iWebRevision.saveRevision(webService, bitmap, fieldName, userName, fieldEntity, true);
-        if (r)
-        {
-            r = iAppRevision_iWebRevision.updateDoc(webService,userName,recordID);//更新文档
-        }
+        Log.e("=====>ERROR_CODE",String.valueOf(iAppRevision_iWebRevision.ERROR_CODE));
+//        if (r)
+//        {
+//            r = iAppRevision_iWebRevision.updateDoc(webService,userName,recordID);//更新文档
+//        }
         bitmap.recycle();
         return r;
 
