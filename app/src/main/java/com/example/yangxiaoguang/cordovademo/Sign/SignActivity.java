@@ -74,6 +74,7 @@ public class SignActivity extends AppCompatActivity {
         userName = getIntent().getStringExtra("userName");
         haveFieldValue = getIntent().getStringExtra("haveFieldValue");
 
+        Log.i("recordID",recordID);
 
         if (haveFieldValue.equals("1")) {
 
@@ -101,6 +102,7 @@ public class SignActivity extends AppCompatActivity {
                 case -1:
                     Toast.makeText(SignActivity.this,"保存读取签批数据失败",Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED);
+                    finish();
                     break;
                 case -2://没有读取到签批数据
                     Toast.makeText(SignActivity.this,"无法读取签批数据",Toast.LENGTH_SHORT).show();
@@ -111,6 +113,7 @@ public class SignActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.putExtra("uuid", struuid);
                     setResult(RESULT_OK,intent);
+                    finish();
                     break;
             }
         }

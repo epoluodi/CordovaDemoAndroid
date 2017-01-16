@@ -66,7 +66,7 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SIGNREQUESTCODE)
         {
-            if (resultCode==1)
+            if (resultCode==RESULT_OK)
             {
                final String uuid = data.getStringExtra("uuid");
                 Log.i("签名文件",uuid);

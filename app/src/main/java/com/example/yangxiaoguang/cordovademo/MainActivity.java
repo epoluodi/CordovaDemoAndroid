@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
             switch (view.getId()) {
                 case R.id.btnweb:
 //                    file:///android_asset/pms/html/index.html
-//                    file:///android_asset/test/webapp-infomation-edit.html
+//                    http://220.194.33.120/defaultroot/clientview/dealfile/indexAndroid.html
                     intent = new Intent(MainActivity.this, CordovaWebActivity.class);
-                    intent.putExtra("url", "file:///android_asset/pms/html/index.html");
+                    intent.putExtra("url", "http://220.194.33.120/defaultroot/clientview/dealfile/indexAndroid.html");
                     startActivity(intent);
                     break;
                 case R.id.btnweb2:
