@@ -195,7 +195,7 @@ public class SignActivity extends AppCompatActivity {
      */
     public Boolean uploadSignData(Bitmap bitmap) {
 
-        boolean r = iAppRevision_iWebRevision.saveRevision(webService, bitmap, fieldName, userName, fieldEntity, true);
+        boolean r = iAppRevision_iWebRevision.saveRevision(recordID, webService, bitmap, fieldName, userName, fieldEntity, true);
         Log.e("=====>ERROR_CODE",String.valueOf(iAppRevision_iWebRevision.ERROR_CODE));
 //        if (r)
 //        {
