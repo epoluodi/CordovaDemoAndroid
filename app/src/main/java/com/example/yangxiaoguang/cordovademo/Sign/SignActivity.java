@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.yangxiaoguang.cordovademo.R;
+import com.kinggrid.iapprevision.iAppRevisionUtil;
 import com.kinggrid.iapprevision.iAppRevisionView;
 import com.kinggrid.iapprevision_iwebrevision.FieldEntity;
 import com.kinggrid.iapprevision_iwebrevision.iAppRevision_iWebRevision;
@@ -49,6 +50,7 @@ public class SignActivity extends AppCompatActivity {
         iAppRevision_iWebRevision = new iAppRevision_iWebRevision();
         iAppRevision_iWebRevision.setCopyRight(this, copyRight, null);
         iAppRevision_iWebRevision.isDebug=true;
+
         //初始化view组件
         iAppRevisionView = (iAppRevisionView) findViewById(R.id.signview);
         btnundo = (Button) findViewById(R.id.undo);
@@ -137,7 +139,7 @@ public class SignActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.save://保存
-                    Bitmap bitmap = iAppRevisionView.saveSign();
+                    Bitmap bitmap = iAppRevisionUtil.scaleBitmap(iAppRevisionView.saveSign(),3);
                     if (bitmap == null) {
                         Toast.makeText(SignActivity.this, "不能保存空白签名", Toast.LENGTH_SHORT).show();
                         return;
