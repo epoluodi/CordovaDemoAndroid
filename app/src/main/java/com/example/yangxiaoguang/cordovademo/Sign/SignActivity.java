@@ -34,7 +34,7 @@ public class SignActivity extends AppCompatActivity {
 
     //控制按钮
     private Button btnundo, btnredo, btnclean, btnreturn, btnsave;
-    private String webService, recordID, fieldName, userName,haveFieldValue;
+    private String webService, recordID, fieldName, userName, haveFieldValue;
 
     private FieldEntity fieldEntity;
     private iAppRevision_iWebRevision iAppRevision_iWebRevision;
@@ -49,7 +49,7 @@ public class SignActivity extends AppCompatActivity {
 
         iAppRevision_iWebRevision = new iAppRevision_iWebRevision();
         iAppRevision_iWebRevision.setCopyRight(this, copyRight, null);
-        iAppRevision_iWebRevision.isDebug=true;
+        iAppRevision_iWebRevision.isDebug = true;
 
         //初始化view组件
         iAppRevisionView = (iAppRevisionView) findViewById(R.id.signview);
@@ -76,7 +76,7 @@ public class SignActivity extends AppCompatActivity {
         userName = getIntent().getStringExtra("userName");
         haveFieldValue = getIntent().getStringExtra("haveFieldValue");
 
-        Log.i("recordID",recordID);
+        Log.i("recordID", recordID);
 
         if (haveFieldValue.equals("1")) {
 
@@ -84,8 +84,7 @@ public class SignActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     fieldEntity = loadFieldEntity(webService, recordID, userName);
-                    if (fieldEntity == null)
-                    {
+                    if (fieldEntity == null) {
                         handler.sendEmptyMessage(-2);
                     }
                 }
@@ -94,27 +93,25 @@ public class SignActivity extends AppCompatActivity {
     }
 
 
-
-    Handler handler =new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what)
-            {
+            switch (msg.what) {
                 case -1:
-                    Toast.makeText(SignActivity.this,"保存读取签批数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignActivity.this, "保存读取签批数据失败", Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED);
                     finish();
                     break;
                 case -2://没有读取到签批数据
-                    Toast.makeText(SignActivity.this,"无法读取签批数据",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignActivity.this, "无法读取签批数据", Toast.LENGTH_SHORT).show();
                     setResult(RESULT_CANCELED);
                     finish();
                     break;
                 case 1:
                     Intent intent = new Intent();
                     intent.putExtra("uuid", struuid);
-                    setResult(RESULT_OK,intent);
+                    setResult(RESULT_OK, intent);
                     finish();
                     break;
             }
@@ -139,7 +136,7 @@ public class SignActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.save://保存
-                    Bitmap bitmap = iAppRevisionUtil.scaleBitmap(iAppRevisionView.saveSign(),3);
+                    Bitmap bitmap = iAppRevisionView.saveSign();
                     if (bitmap == null) {
                         Toast.makeText(SignActivity.this, "不能保存空白签名", Toast.LENGTH_SHORT).show();
                         return;
@@ -155,7 +152,7 @@ public class SignActivity extends AppCompatActivity {
     };
 
 
-    public void saveBitmap(final  Bitmap bitmap) {
+    public void saveBitmap(final Bitmap bitmap) {
 
         File f = new File(Environment.getExternalStorageDirectory(), struuid + ".png");
         if (f.exists()) {
@@ -171,15 +168,16 @@ public class SignActivity extends AppCompatActivity {
         }
 
 
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (uploadSignData(bitmap))
-                {
+
+                Bitmap newbitmap = iAppRevisionUtil.scaleBitmap(bitmap, 3);
+                bitmap.recycle();
+
+                if (uploadSignData(newbitmap)) {
                     handler.sendEmptyMessage(1);//保存成功
-                }else
-                {
+                } else {
                     handler.sendEmptyMessage(-1);//保存失败
                 }
 
@@ -198,7 +196,7 @@ public class SignActivity extends AppCompatActivity {
     public Boolean uploadSignData(Bitmap bitmap) {
 
         boolean r = iAppRevision_iWebRevision.saveRevision(recordID, webService, bitmap, fieldName, userName, fieldEntity, true);
-        Log.e("=====>ERROR_CODE",String.valueOf(iAppRevision_iWebRevision.ERROR_CODE));
+        Log.e("=====>ERROR_CODE", String.valueOf(iAppRevision_iWebRevision.ERROR_CODE));
 //        if (r)
 //        {
 //            r = iAppRevision_iWebRevision.updateDoc(webService,userName,recordID);//更新文档
@@ -211,22 +209,21 @@ public class SignActivity extends AppCompatActivity {
 
     /**
      * 读取签批数据
+     *
      * @param webService
      * @param recordID
      * @param userName
      * @return
      */
     public FieldEntity loadFieldEntity(String webService, String recordID, String userName) {
-        try
-        {
+        try {
 
             Map<String, FieldEntity> recordIdMap = iAppRevision_iWebRevision.loadRevision(
                     webService, recordID, userName);
             FieldEntity fieldEntity = recordIdMap.get(fieldName);
-            if (fieldEntity==null)
+            if (fieldEntity == null)
                 return null;
-            if (fieldEntity.hasFieldBitmap())
-            {
+            if (fieldEntity.hasFieldBitmap()) {
 
                 File f = new File(Environment.getExternalStorageDirectory(), userName + ".png");
                 if (f.exists()) {
@@ -243,9 +240,7 @@ public class SignActivity extends AppCompatActivity {
             }
             return fieldEntity;
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
