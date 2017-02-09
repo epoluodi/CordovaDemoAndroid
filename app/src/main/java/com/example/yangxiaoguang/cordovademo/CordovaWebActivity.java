@@ -74,6 +74,10 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
                 cdvCore.callbackContext=null;
 
                 return;
+            }else if (resultCode == RESULT_CANCELED)
+            {
+                cdvCore.callbackContext.error("签批失败");
+                cdvCore.callbackContext=null;
             }
 
         }

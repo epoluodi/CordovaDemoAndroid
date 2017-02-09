@@ -39,6 +39,7 @@ public class SignActivity extends AppCompatActivity {
     private FieldEntity fieldEntity;
     private iAppRevision_iWebRevision iAppRevision_iWebRevision;
     private String struuid;
+    private int mode;//1 手写模式 2 文字模式
     //授权信息
     public static String copyRight = "SxD/phFsuhBWZSmMVtSjKZmm/c/3zSMrkV2Bbj5tznSkEVZmTwJv0wwMmH/+p6wLiUHbjadYueX9v51H9GgnjUhmNW1xPkB++KQqSv/VKLDsR8V6RvNmv0xyTLOrQoGzAT81iKFYb1SZ/Zera1cjGwQSq79AcI/N/6DgBIfpnlwiEiP2am/4w4+38lfUELaNFry8HbpbpTqV4sqXN1WpeJ7CHHwcDBnMVj8djMthFaapMFm/i6swvGEQ2JoygFU3CQHU1ScyOebPLnpsDlQDzCOCvJ0o3Q+3TNNDtQWpjvfx6aD2yiupr6ji7hzsE6/QqGcC+eseQV1yrWJ/1FwxLAZ0WW0ABzY7A5uS1BgyebOVWEbHWAH22+t7LdPt+jENixZ/ZiYbBr3IJV3FwjNdmPaTd5f45yYpg1M98hLfJUqSgCNRP4FpYjl8hG/IVrYX5HLRplzRZbxZglj2FjzakuW8fXpxdRHfEuWC1PB9ruQ=";
 
@@ -75,7 +76,16 @@ public class SignActivity extends AppCompatActivity {
         fieldName = getIntent().getStringExtra("fieldName");
         userName = getIntent().getStringExtra("userName");
         haveFieldValue = getIntent().getStringExtra("haveFieldValue");
+        mode = getIntent().getIntExtra("mode", 1);
+        if (mode==2)
+        {
+            //文字模式
+            iAppRevisionView.useWordSign();
+            btnundo.setVisibility(View.GONE);
+            btnredo.setVisibility(View.GONE);
+            btnclean.setVisibility(View.GONE);
 
+        }
         Log.i("recordID", recordID);
 
         if (haveFieldValue.equals("1")) {
@@ -136,7 +146,17 @@ public class SignActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.save://保存
-                    Bitmap bitmap = iAppRevisionView.saveSign();
+                    Bitmap bitmap=null;
+                    switch (mode)
+                    {
+                        case 1://手写
+                            bitmap = iAppRevisionView.saveSign();
+                            break;
+                        case 2://文字
+                            bitmap = iAppRevisionView.saveWord();
+                            break;
+                    }
+
                     if (bitmap == null) {
                         Toast.makeText(SignActivity.this, "不能保存空白签名", Toast.LENGTH_SHORT).show();
                         return;
@@ -154,28 +174,28 @@ public class SignActivity extends AppCompatActivity {
 
     public void saveBitmap(final Bitmap bitmap) {
 
-        File f = new File(Environment.getExternalStorageDirectory(), struuid + ".png");
-        if (f.exists()) {
-            f.delete();
-        }
-        try {
-            FileOutputStream out = new FileOutputStream(f);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        File f = new File(Environment.getExternalStorageDirectory(), struuid + ".png");
+//        if (f.exists()) {
+//            f.delete();
+//        }
+//        try {
+//            FileOutputStream out = new FileOutputStream(f);
+//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+//            out.flush();
+//            out.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                Bitmap newbitmap = iAppRevisionUtil.scaleBitmap(bitmap, 3);
-                bitmap.recycle();
+//                Bitmap newbitmap = iAppRevisionUtil.scaleBitmap(bitmap, 3);
+//                bitmap.recycle();
 
-                if (uploadSignData(newbitmap)) {
+                if (uploadSignData(bitmap)) {
                     handler.sendEmptyMessage(1);//保存成功
                 } else {
                     handler.sendEmptyMessage(-1);//保存失败
@@ -223,21 +243,21 @@ public class SignActivity extends AppCompatActivity {
             FieldEntity fieldEntity = recordIdMap.get(fieldName);
             if (fieldEntity == null)
                 return null;
-            if (fieldEntity.hasFieldBitmap()) {
-
-                File f = new File(Environment.getExternalStorageDirectory(), userName + ".png");
-                if (f.exists()) {
-                    f.delete();
-                }
-                try {
-                    FileOutputStream out = new FileOutputStream(f);
-                    fieldEntity.getFieldBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
-                    out.flush();
-                    out.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+//            if (fieldEntity.hasFieldBitmap()) {
+//
+//                File f = new File(Environment.getExternalStorageDirectory(), userName + ".png");
+//                if (f.exists()) {
+//                    f.delete();
+//                }
+//                try {
+//                    FileOutputStream out = new FileOutputStream(f);
+//                    fieldEntity.getFieldBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+//                    out.flush();
+//                    out.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
             return fieldEntity;
 
         } catch (Exception e) {

@@ -111,7 +111,7 @@ public class CDVCore {
                         }
                         try {
                             FileOutputStream out = new FileOutputStream(f);
-                            fieldEntity.getFieldBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+                            fieldEntity.getAllImage().compress(Bitmap.CompressFormat.PNG, 100, out);
                             out.flush();
                             out.close();
                         } catch (Exception e) {
@@ -160,7 +160,7 @@ public class CDVCore {
                         intent.putExtra("fieldName", jsonObject1.getString("fieldName"));
                         intent.putExtra("userName", jsonObject1.getString("userName"));
                         intent.putExtra("haveFieldValue", jsonObject1.getString("haveFieldValue"));
-
+                        intent.putExtra("mode", jsonObject1.getInt("mode"));
                     }
                     catch (Exception e)
                     {e.printStackTrace();}
