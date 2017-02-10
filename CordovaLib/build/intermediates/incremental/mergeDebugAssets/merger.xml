@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/Stereo/个人/CordovaDemoAndroid/CordovaLib/assets"/><source path="/Users/Stereo/个人/CordovaDemoAndroid/CordovaLib/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/Stereo/个人/CordovaDemoAndroid/CordovaLib/src/debug/assets"/></dataSet></merger>
