@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -63,7 +64,10 @@ public class SignActivity extends AppCompatActivity {
 
         //设置签名 颜色，线条宽度，笔类型：现在是钢笔
         iAppRevisionView.configSign(Color.BLACK, 16, iAppRevisionView.TYPE_BALLPEN);
-
+        iAppRevisionView.configWord(Color.BLACK,18, Typeface.DEFAULT);
+        iAppRevisionView.setTimeTextInfo(iAppRevisionView.getTimeTextWidth(),
+                iAppRevisionView.getTimeTextHeight(), 20, 30,
+                Color.BLACK, iAppRevisionView.getTime_textAlign());
         //按钮事件
         btnundo.setOnClickListener(onClickListenerSignCotrol);
         btnredo.setOnClickListener(onClickListenerSignCotrol);
@@ -81,6 +85,7 @@ public class SignActivity extends AppCompatActivity {
         {
             //文字模式
             iAppRevisionView.useWordSign();
+
             btnundo.setVisibility(View.GONE);
             btnredo.setVisibility(View.GONE);
             btnclean.setVisibility(View.GONE);
@@ -157,7 +162,7 @@ public class SignActivity extends AppCompatActivity {
                             break;
                     }
 
-                    if (bitmap == null) {
+                    if (bitmap == null || !iAppRevisionView.isEmpty()) {
                         Toast.makeText(SignActivity.this, "不能保存空白签名", Toast.LENGTH_SHORT).show();
                         return;
                     }
