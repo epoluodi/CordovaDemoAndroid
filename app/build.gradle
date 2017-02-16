@@ -31,5 +31,5 @@ dependencies {
     compile(name: 'CordovaLib-release', ext: 'aar')
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile files('libs/org.apache.http.legacy.jar')
-    compile files('libs/iAppRevision_V3.1.0.220.jar')
+    compile files('libs/iAppRevision.jar')
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.os.Environment;
 import android.os.Handler;
@@ -64,10 +65,15 @@ public class SignActivity extends AppCompatActivity {
 
         //设置签名 颜色，线条宽度，笔类型：现在是钢笔
         iAppRevisionView.configSign(Color.BLACK, 16, iAppRevisionView.TYPE_BALLPEN);
-        iAppRevisionView.configWord(Color.BLACK,18, Typeface.DEFAULT);
+
+        iAppRevisionView.configWord(Color.BLACK, 24, Typeface.DEFAULT);
+
         iAppRevisionView.setTimeTextInfo(iAppRevisionView.getTimeTextWidth(),
                 iAppRevisionView.getTimeTextHeight(), 20, 30,
                 Color.BLACK, iAppRevisionView.getTime_textAlign());
+
+        iAppRevisionView.setBgIsWhite(true);
+
         //按钮事件
         btnundo.setOnClickListener(onClickListenerSignCotrol);
         btnredo.setOnClickListener(onClickListenerSignCotrol);
@@ -81,8 +87,7 @@ public class SignActivity extends AppCompatActivity {
         userName = getIntent().getStringExtra("userName");
         haveFieldValue = getIntent().getStringExtra("haveFieldValue");
         mode = getIntent().getIntExtra("mode", 1);
-        if (mode==2)
-        {
+        if (mode == 2) {
             //文字模式
             iAppRevisionView.useWordSign();
 
@@ -151,18 +156,20 @@ public class SignActivity extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.save://保存
-                    Bitmap bitmap=null;
-                    switch (mode)
-                    {
+                    Bitmap bitmap = null;
+
+                    switch (mode) {
                         case 1://手写
-                            bitmap = iAppRevisionView.saveSign();
+                            bitmap = iAppRevisionView.saveValidSign();
                             break;
                         case 2://文字
-                            bitmap = iAppRevisionView.saveWord();
+                            Bitmap tmpbitmap = iAppRevisionView.saveValidWord();
+                            bitmap = iAppRevisionView.addTimeStampToBitmap(userName, tmpbitmap);
+
                             break;
                     }
 
-                    if (bitmap == null || !iAppRevisionView.isEmpty()) {
+                    if (bitmap == null || iAppRevisionView.isEmpty()) {
                         Toast.makeText(SignActivity.this, "不能保存空白签名", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -197,15 +204,14 @@ public class SignActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-//                Bitmap newbitmap = iAppRevisionUtil.scaleBitmap(bitmap, 3);
-//                bitmap.recycle();
-
-                if (uploadSignData(bitmap)) {
+                Bitmap newbitmap = scaleBitmap(bitmap, 0.2f);
+                if (uploadSignData(newbitmap)) {
                     handler.sendEmptyMessage(1);//保存成功
                 } else {
                     handler.sendEmptyMessage(-1);//保存失败
                 }
-
+                bitmap.recycle();
+                newbitmap.recycle();
             }
         }).start();
 
@@ -272,5 +278,21 @@ public class SignActivity extends AppCompatActivity {
         return null;
     }
 
+
+    private Bitmap scaleBitmap(Bitmap origin, float ratio) {
+        if (origin == null) {
+            return null;
+        }
+        int width = origin.getWidth();
+        int height = origin.getHeight();
+        Matrix matrix = new Matrix();
+        matrix.preScale(ratio, ratio);
+        Bitmap newBM = Bitmap.createBitmap(origin, 0, 0, width, height, matrix, false);
+        if (newBM.equals(origin)) {
+            return newBM;
+        }
+//        origin.recycle();
+        return newBM;
+    }
 
 }
