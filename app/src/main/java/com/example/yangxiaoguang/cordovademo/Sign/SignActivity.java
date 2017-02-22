@@ -203,8 +203,17 @@ public class SignActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Bitmap newbitmap=null;
+                switch (mode)
+                {
+                    case 1:
+                        newbitmap = scaleBitmap(bitmap, 0.2f);
+                        break;
+                    case 2:
+                        newbitmap = scaleBitmap(bitmap, 0.6f);
+                        break;
+                }
 
-                Bitmap newbitmap = scaleBitmap(bitmap, 0.2f);
                 if (uploadSignData(newbitmap)) {
                     handler.sendEmptyMessage(1);//保存成功
                 } else {
