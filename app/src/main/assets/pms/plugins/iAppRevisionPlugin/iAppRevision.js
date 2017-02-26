@@ -1,5 +1,5 @@
 //fengxf added begin:
-cordova.define("com.example.yangxiaoguang.cordovademo.Cordova.Plugin.iAppRevision", function(require,exports,module){
+cordova.define("com.Cordova.Plugin.iAppRevision", function(require,exports,module){
 
     var exec = require('cordova/exec');
 
@@ -18,11 +18,23 @@ cordova.define("com.example.yangxiaoguang.cordovademo.Cordova.Plugin.iAppRevisio
 
               exec(getRequestHeaderCallBack, null, "iAppRevisionPlugin", "showSign", [jsonparams]);
         },
-        //读取签批数据
-        loadSign: function(jsonparams,getRequestHeaderCallBack) {
+        //保存签批
+        sendSign: function(jsonparams,getRequestHeaderCallBack) {
 
-        exec(getRequestHeaderCallBack, null, "iAppRevisionPlugin", "loadSign", [jsonparams]);
+              exec(getRequestHeaderCallBack, null, "iAppRevisionPlugin", "sendSign", [jsonparams]);
         },
+        //读取签批数据
+        loadPointData: function(jsonparams,getRequestHeaderCallBack) {
+
+        exec(getRequestHeaderCallBack,null, "iAppRevisionPlugin", "loadPointData", [jsonparams]);
+        },
+
+        initSign: function(jsonparams) {
+
+        exec(null, null, "iAppRevisionPlugin", "initSign", [jsonparams]);
+        },
+
+
     };
 
 });

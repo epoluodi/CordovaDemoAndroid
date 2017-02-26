@@ -2,16 +2,20 @@ package com.example.yangxiaoguang.cordovademo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 
 import com.example.yangxiaoguang.cordovademo.Cordova.CDVCore;
+import com.example.yangxiaoguang.cordovademo.Sign.SignActivity;
 
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,6 +30,7 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
 
     private CordovaWebView cordovaWebView;
     private CDVCore cdvCore;
+    private String strpointdata;
 
     //系统线程池，创建后由Cordova调用。TODO：需要移植
     private final ExecutorService threadPool = Executors.newCachedThreadPool();
@@ -39,9 +44,10 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
 
         //初始化 CordovaCore
         cdvCore = new CDVCore(this, cordovaWebView);
-
+        cordovaWebView.clearCache(true);
         Intent intent = getIntent();
         cdvCore.loadUrl(intent.getStringExtra("url"));
+
     }
 
 
@@ -57,6 +63,7 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
 
     /**
      * 处理其它窗口返回
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -64,20 +71,61 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SIGNREQUESTCODE)
-        {
-            if (resultCode==RESULT_OK)
-            {
-               final String uuid = data.getStringExtra("uuid");
-                Log.i("签名文件",uuid);
+        if (requestCode == SIGNREQUESTCODE) {
+            if (resultCode == RESULT_OK) {
+                final String uuid = data.getStringExtra("uuid");
+                Log.i("签名文件", uuid);
                 cdvCore.callbackContext.success(uuid);
-                cdvCore.callbackContext=null;
+                cdvCore.callbackContext = null;
 
                 return;
             }
+            if (resultCode == SignActivity.RESULT_PREVIEW) {
+                final String json = data.getStringExtra("json");
 
+                String recordid = data.getStringExtra("recordid");
+                try {
+
+                    Log.i("签名文件", json);
+                    cdvCore.callbackContext.success(json);
+                    cdvCore.callbackContext = null;
+                    strpointdata = CDVCore.readStringToTxt(CordovaWebActivity.this, recordid);
+                    if (strpointdata==null)
+                        return;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(50);
+                                handler.sendEmptyMessage(0);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+                return;
+            }
         }
     }
+
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            try {
+
+                cordovaWebView.loadUrl("javascript:setHandData('" + strpointdata + "')");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     /**
      * TODO 在activity 进行激活状态需要对cordova 进行恢复
@@ -85,7 +133,7 @@ public class CordovaWebActivity extends AppCompatActivity implements CordovaInte
     @Override
     protected void onResume() {
         super.onResume();
-        cordovaWebView.handleResume(true,true);
+        cordovaWebView.handleResume(true, true);
     }
 
     /**

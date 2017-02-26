@@ -69,7 +69,7 @@
         <Button
             android:id="@+id/save"
             android:textColor="@android:color/holo_green_light"
-            android:text="保存"
+            android:text="预览"
             android:textSize="18dp"
             android:background="@drawable/sign_btnsave_selector"
             android:layout_alignParentBottom="true"

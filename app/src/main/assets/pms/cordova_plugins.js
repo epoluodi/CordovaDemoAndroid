@@ -2,7 +2,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
         "file": "plugins/org.apache.cordova.webview/www/WebViewRequest.js",
-        "id": "com.example.yangxiaoguang.cordovademo.Cordova.Plugin.WebViewRequest",
+        "id": "com.Cordova.Plugin.WebViewRequest",
         "merges": [
         "cdv.webview"
         ]
@@ -16,7 +16,7 @@ module.exports = [
      },
      {
         "file": "plugins/iAppRevisionPlugin/iAppRevision.js",
-        "id": "com.example.yangxiaoguang.cordovademo.Cordova.Plugin.iAppRevision",
+        "id": "com.Cordova.Plugin.iAppRevision",
         "merges": [
         "cdv.sign"
         ]
@@ -26,8 +26,6 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "com.suypower.stereo.suehome.CordovaPlugin.http.FavoriteRequest": "0.0.1",
-
 
 }
 // BOTTOM OF METADATA
